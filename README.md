@@ -30,3 +30,24 @@ This repository contains an example implementation for a desktop application tha
 4. **Solution file**: `StudentTestingApp.sln` includes the WPF project. You can open this solution in Visual Studio or run `dotnet build` to compile on a Windows machine.
 
 The next steps will implement the database models, user interface screens, code evaluation logic, and secure execution environment.
+
+## Step 2: Database and EF Core Models
+
+1. **Add models** representing users, roles, tasks, test cases and submissions. These classes live in `StudentTestingApp/Models`.
+2. **Create `StudentTestingContext`** derived from `DbContext` to access PostgreSQL. The context exposes `DbSet` properties for all entities and seeds the default roles.
+3. **Update the project file** to reference `Microsoft.EntityFrameworkCore` and `Npgsql.EntityFrameworkCore.PostgreSQL` packages.
+4. **Configure the connection string** when starting the application (for instance in `App.xaml.cs`). Example:
+   ```csharp
+   var builder = new DbContextOptionsBuilder<StudentTestingContext>();
+   builder.UseNpgsql("Host=localhost;Database=testing;Username=postgres;Password=secret");
+   var db = new StudentTestingContext(builder.Options);
+   db.Database.Migrate();
+   ```
+5. **Apply migrations** and create the database:
+   ```bash
+   dotnet ef migrations add InitialCreate
+   dotnet ef database update
+   ```
+   (You need the `dotnet-ef` tool installed with `dotnet tool install --global dotnet-ef`.)
+
+These instructions set up the database layer so the next steps can implement the UI and code evaluation logic.
