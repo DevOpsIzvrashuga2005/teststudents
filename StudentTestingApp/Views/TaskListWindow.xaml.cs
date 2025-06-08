@@ -28,6 +28,8 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Failed to load tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
+            TasksListBox.ItemsSource = _context.ProgrammingTasks.ToList();
 
             if (_currentUser.RoleId == 2)
             {
@@ -55,7 +57,10 @@ namespace StudentTestingApp.Views
 
         private void ToggleThemeButton_Click(object sender, RoutedEventArgs e)
         {
+
             var theme = _paletteHelper.GetTheme();
+            var theme = _paletteHelper.GetTheme();
+            ITheme theme = _paletteHelper.GetTheme();
             if (theme.GetBaseTheme() == BaseTheme.Dark)
             {
                 theme.SetBaseTheme(Theme.Light);

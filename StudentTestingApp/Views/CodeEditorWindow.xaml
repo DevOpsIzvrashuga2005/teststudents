@@ -12,5 +12,23 @@
         <TextBox x:Name="CodeTextBox" Grid.Row="1" FontFamily="Consolas" AcceptsReturn="True"
                  AcceptsTab="True" TextWrapping="NoWrap" VerticalScrollBarVisibility="Auto"/>
         <Button x:Name="SubmitButton" Grid.Row="2" Content="Submit" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="SubmitButton_Click" />
+        <TextBox x:Name="CodeTextBox" Grid.Row="1" FontFamily="Consolas" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        <Button x:Name="SubmitButton" Grid.Row="2" Content="Submit" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="SubmitButton_Click" />
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Code Editor" Height="500" Width="700">
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <materialDesign:Card Margin="16" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="DescriptionBlock" TextWrapping="Wrap" Margin="0,0,0,8" />
+                <TextBox x:Name="CodeTextBox" Grid.Row="1" FontFamily="Consolas" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+                <Button x:Name="SubmitButton" Grid.Row="2" Content="Submit" HorizontalAlignment="Right" Margin="0,8,0,0" Click="SubmitButton_Click" />
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </Window>
