@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -25,6 +26,29 @@ namespace StudentTestingApp.Views
                 return;
             }
 
+
+            try
+            {
+                var db = ((App)Application.Current).Db;
+                string hash = HashPassword(password);
+
+                var user = db.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == hash);
+                if (user == null)
+                {
+                    MessageBox.Show("Invalid credentials.");
+                    return;
+                }
+
+                var taskWindow = new TaskListWindow();
+                Application.Current.MainWindow = taskWindow;
+                taskWindow.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error during login: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             var db = ((App)Application.Current).Db;
             string hash = HashPassword(password);
 
@@ -38,6 +62,7 @@ namespace StudentTestingApp.Views
             var taskWindow = new TaskListWindow();
             taskWindow.Show();
             Close();
+
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -49,6 +74,33 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show("Please enter username and password.");
                 return;
+            }
+
+
+            try
+            {
+                var db = ((App)Application.Current).Db;
+
+                if (db.Users.Any(u => u.UserName == username))
+                {
+                    MessageBox.Show("User already exists.");
+                    return;
+                }
+
+                var newUser = new User
+                {
+                    UserName = username,
+                    PasswordHash = HashPassword(password),
+                    RoleId = 1
+                };
+                db.Users.Add(newUser);
+                db.SaveChanges();
+
+                MessageBox.Show("Registration successful. You can now log in.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error during registration: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             var db = ((App)Application.Current).Db;
@@ -69,6 +121,7 @@ namespace StudentTestingApp.Views
             db.SaveChanges();
 
             MessageBox.Show("Registration successful. You can now log in.");
+
         }
 
         private static string HashPassword(string password)
