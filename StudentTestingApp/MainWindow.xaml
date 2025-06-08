@@ -1,0 +1,8 @@
+<Window x:Class="StudentTestingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StudentTestingApp" Height="350" Width="525">
+    <Grid>
+        <TextBlock Text="Hello, Student Testing App!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</Window>
