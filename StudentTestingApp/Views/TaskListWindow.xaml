@@ -1,13 +1,19 @@
 <Window x:Class="StudentTestingApp.Views.TaskListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
         Title="Tasks" Height="300" Width="400">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="TasksListBox" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
-        <Button x:Name="CreateTaskButton" Grid.Row="1" Content="New Task" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="CreateTaskButton_Click" Visibility="Collapsed" />
+
+        <ToolBar Grid.Row="0" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+            <Button x:Name="CreateTaskButton" Content="Create Task" Click="CreateTaskButton_Click" Visibility="Collapsed" />
+        </ToolBar>
+
+        <ListBox x:Name="TasksListBox" Grid.Row="1" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
     </Grid>
 </Window>
