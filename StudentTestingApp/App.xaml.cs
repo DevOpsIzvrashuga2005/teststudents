@@ -16,6 +16,13 @@ namespace StudentTestingApp
 
             try
             {
+                string connString = Environment.GetEnvironmentVariable("CONNECTION_STRING")
+                    ?? "Host=localhost;Database=testing;Username=postgres;Password=secret";
+
+                var options = new DbContextOptionsBuilder<StudentTestingContext>()
+                    .UseNpgsql(connString)
+                    .Options;
+
                 var options = new DbContextOptionsBuilder<StudentTestingContext>()
                     .UseNpgsql("Host=localhost;Database=testing;Username=postgres;Password=secret")
                     .Options;
