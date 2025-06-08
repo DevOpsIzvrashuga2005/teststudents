@@ -86,6 +86,7 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during registration: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
         private static string HashPassword(string password)

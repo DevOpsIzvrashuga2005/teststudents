@@ -63,6 +63,7 @@ These instructions set up the database layer so the next steps can implement the
 2. **TaskListWindow** now loads tasks from the database. Teachers see a "New Task" button that opens a form to create tasks.
 3. Selecting a task opens **CodeEditorWindow** where students can write code and submit it for evaluation. The editor starts with a simple `Program` template so you can focus on your solution code immediately.
 
+
 Open `App.xaml` to start the application with `LoginWindow`. Once authenticated you can navigate to the other windows.
 
 ## Step 4: Code Evaluation Logic
