@@ -33,22 +33,11 @@ namespace StudentTestingApp.Views
 
                 var user = context.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == passwordHash);
 
-
-            try
-            {
-                var db = ((App)Application.Current).Db;
-                string hash = HashPassword(password);
-
-                var user = db.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == hash);
-
                 if (user == null)
                 {
                     MessageBox.Show("Invalid credentials.");
                     return;
                 }
-
-                ((App)Application.Current).CurrentUser = user;
-
 
                 ((App)Application.Current).CurrentUser = user;
 
@@ -61,21 +50,6 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during login: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-
-            var db = ((App)Application.Current).Db;
-            string hash = HashPassword(password);
-
-            var user = db.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == hash);
-            if (user == null)
-            {
-                MessageBox.Show("Invalid credentials.");
-                return;
-            }
-
-            var taskWindow = new TaskListWindow();
-            taskWindow.Show();
-            Close();
 
         }
 
@@ -96,12 +70,6 @@ namespace StudentTestingApp.Views
 
                 if (context.Users.Any(u => u.UserName == username))
 
-            try
-            {
-                var db = ((App)Application.Current).Db;
-
-                if (db.Users.Any(u => u.UserName == username))
-
                 {
                     MessageBox.Show("User already exists.");
                     return;
@@ -115,8 +83,7 @@ namespace StudentTestingApp.Views
                 };
                 context.Users.Add(newUser);
                 context.SaveChanges();
-                db.Users.Add(newUser);
-                db.SaveChanges();
+
 
                 MessageBox.Show("Registration successful. You can now log in.");
             }
@@ -124,25 +91,6 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during registration: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            var db = ((App)Application.Current).Db;
-
-            if (db.Users.Any(u => u.UserName == username))
-            {
-                MessageBox.Show("User already exists.");
-                return;
-            }
-
-            var newUser = new User
-            {
-                UserName = username,
-                PasswordHash = HashPassword(password),
-                RoleId = 1
-            };
-            db.Users.Add(newUser);
-            db.SaveChanges();
-
-            MessageBox.Show("Registration successful. You can now log in.");
 
         }
 
