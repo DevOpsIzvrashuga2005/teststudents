@@ -62,6 +62,26 @@ These instructions set up the database layer so the next steps can implement the
 
 Open `App.xaml` to start the application with `LoginWindow`. Once authenticated you can navigate to the other windows.
 
+## Step 4: Code Evaluation Logic
+
+1. Add a reference to the Roslyn compiler package:
+   ```bash
+   dotnet add package Microsoft.CodeAnalysis.CSharp
+   ```
+2. The `Services/CodeEvaluator` class compiles student code using Roslyn and runs it against every test case. Each test case defines the input and expected output.
+3. `CodeEvaluator` executes the compiled program in a separate process with a short timeout, captures the output, and returns a `CodeEvaluationResult` for each test case.
+4. Example usage:
+   ```csharp
+   var evaluator = new CodeEvaluator();
+   var results = await evaluator.EvaluateAsync(code, task.TestCases);
+   foreach (var r in results)
+   {
+       Console.WriteLine($"Output: {r.Output}  Success: {r.Success}");
+   }
+   ```
+
+This step lays the groundwork for automated grading of submissions. Security-hardening like sandboxing should be added in future steps.
+
 4. **Solution file**: `StudentTestingApp.sln` includes the WPF project. You can open this solution in Visual Studio or run `dotnet build` to compile on a Windows machine.
 
 The next steps will implement the database models, user interface screens, code evaluation logic, and secure execution environment.
