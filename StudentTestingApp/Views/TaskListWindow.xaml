@@ -3,17 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
-        Title="Tasks" Height="300" Width="400">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        Title="Tasks" Height="350" Width="450">
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <DockPanel>
+            <ToolBar DockPanel.Dock="Top" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+                <Button x:Name="ToggleThemeButton" Content="Toggle Theme" Click="ToggleThemeButton_Click" />
+                <Separator />
+                <Button x:Name="CreateTaskButton" Content="Create Task" Click="CreateTaskButton_Click" Visibility="Collapsed" />
+            </ToolBar>
 
-        <ToolBar Grid.Row="0" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
-            <Button x:Name="CreateTaskButton" Content="Create Task" Click="CreateTaskButton_Click" Visibility="Collapsed" />
-        </ToolBar>
-
-        <ListBox x:Name="TasksListBox" Grid.Row="1" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
+            <materialDesign:Card Margin="16" Padding="8">
+                <ListBox x:Name="TasksListBox" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
+            </materialDesign:Card>
+        </DockPanel>
     </Grid>
 </Window>
