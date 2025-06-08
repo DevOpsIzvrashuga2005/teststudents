@@ -23,6 +23,10 @@ namespace StudentTestingApp
                     .UseNpgsql(connString)
                     .Options;
 
+                var options = new DbContextOptionsBuilder<StudentTestingContext>()
+                    .UseNpgsql("Host=localhost;Database=testing;Username=postgres;Password=secret")
+                    .Options;
+
                 Db = new StudentTestingContext(options);
                 Db.Database.Migrate();
             }
