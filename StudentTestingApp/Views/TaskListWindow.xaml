@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Tasks" Height="300" Width="400">
     <Grid Margin="10">
-        <ListBox x:Name="TasksListBox" DisplayMemberPath="Title" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="TasksListBox" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
+        <Button x:Name="CreateTaskButton" Grid.Row="1" Content="New Task" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="CreateTaskButton_Click" Visibility="Collapsed" />
     </Grid>
 </Window>

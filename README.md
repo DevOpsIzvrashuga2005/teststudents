@@ -57,8 +57,8 @@ These instructions set up the database layer so the next steps can implement the
 ## Step 3: User Interface Screens
 
 1. **LoginWindow** provides username and password fields with buttons to log in or register.
-2. **TaskListWindow** displays available programming tasks. For now it loads sample data but can be bound to EF Core later.
-3. **CodeEditorWindow** shows a text box for writing code and a button to submit the solution.
+2. **TaskListWindow** now loads tasks from the database. Teachers see a "New Task" button that opens a form to create tasks.
+3. Selecting a task opens **CodeEditorWindow** where students can write code and submit it for evaluation.
 
 Open `App.xaml` to start the application with `LoginWindow`. Once authenticated you can navigate to the other windows.
 
@@ -70,6 +70,7 @@ Open `App.xaml` to start the application with `LoginWindow`. Once authenticated 
    ```
 2. The `Services/CodeEvaluator` class compiles student code using Roslyn and runs it against every test case. Each test case defines the input and expected output.
 3. `CodeEvaluator` executes the compiled program in a separate process with a short timeout, captures the output, and returns a `CodeEvaluationResult` for each test case.
+   Each submission is stored in the database and a 5 second limit prevents endless loops.
 4. Example usage:
    ```csharp
    var evaluator = new CodeEvaluator();
