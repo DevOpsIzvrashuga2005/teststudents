@@ -23,6 +23,7 @@ namespace StudentTestingApp
                     .UseNpgsql(connString)
                     .Options;
 
+
                 Db = new StudentTestingContext(options);
                 Db.Database.Migrate();
             }
