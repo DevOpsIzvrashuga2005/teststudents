@@ -1,11 +1,13 @@
 using System.Windows;
 using System.Windows.Controls;
+
 using StudentTestingApp.Models;
 
 namespace StudentTestingApp.Views
 {
     public partial class TaskCreationWindow : Window
     {
+
         private int _caseCounter = 0;
 
         public TaskCreationWindow()
@@ -29,6 +31,10 @@ namespace StudentTestingApp.Views
         private void AddTestCaseButton_Click(object sender, RoutedEventArgs e)
         {
             AddTestCaseRow();
+
+        public TaskCreationWindow()
+        {
+            InitializeComponent();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -47,6 +53,7 @@ namespace StudentTestingApp.Views
                 Description = DescriptionBox.Text.Trim()
             };
 
+
             foreach (StackPanel panel in TestCasesPanel.Children)
             {
                 if (panel.Children.Count >= 4 &&
@@ -60,6 +67,13 @@ namespace StudentTestingApp.Views
                     });
                 }
             }
+
+            task.TestCases.Add(new TaskTestCase
+            {
+                Input = InputBox.Text,
+                ExpectedOutput = OutputBox.Text
+            });
+
 
             context.ProgrammingTasks.Add(task);
             context.SaveChanges();

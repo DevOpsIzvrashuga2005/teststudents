@@ -73,7 +73,7 @@ These instructions set up the database layer so the next steps can implement the
 1. **LoginWindow** provides username and password fields with buttons to log in or register.
 2. **TaskListWindow** now loads tasks from the database. Teachers see a "New Task" button that opens a form to create tasks.
 3. Selecting a task opens **CodeEditorWindow** where students can write code and submit it for evaluation. The editor starts with a simple `Program` template so you can focus on your solution code immediately.
-4. **TaskCreationWindow** supports multiple test cases. Use the **Add** button to insert more input/output pairs when defining a task.
+
 
 Open `App.xaml` to start the application with `LoginWindow`. Once authenticated you can navigate to the other windows.
 

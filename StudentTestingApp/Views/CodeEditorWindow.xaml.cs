@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.EntityFrameworkCore;
 using StudentTestingApp.Models;
 using StudentTestingApp.Services;
 
@@ -20,6 +19,7 @@ namespace StudentTestingApp.Views
             _task = context.ProgrammingTasks
                 .Include(t => t.TestCases)
                 .FirstOrDefault(t => t.Id == task.Id) ?? task;
+            _task = task;
             Title = task.Title;
             DescriptionBlock.Text = task.Description;
             CodeTextBox.Text =
