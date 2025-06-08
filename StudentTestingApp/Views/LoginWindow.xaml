@@ -17,8 +17,8 @@
         <TextBlock Text="Password:" Grid.Row="1" Grid.Column="0" Margin="0,0,5,5" VerticalAlignment="Center" />
         <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" />
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="LoginButton" Content="Login" Width="80" Margin="0,0,5,0" />
-            <Button x:Name="RegisterButton" Content="Register" Width="80" />
+            <Button x:Name="LoginButton" Content="Login" Width="80" Margin="0,0,5,0" Click="LoginButton_Click" />
+            <Button x:Name="RegisterButton" Content="Register" Width="80" Click="RegisterButton_Click" />
         </StackPanel>
     </Grid>
 </Window>
