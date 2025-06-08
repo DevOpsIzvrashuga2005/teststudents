@@ -55,7 +55,8 @@ namespace StudentTestingApp.Services
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    UseShellExecute = false
+                    UseShellExecute = false,
+                    CreateNoWindow = true
                 };
                 using var process = Process.Start(startInfo);
                 if (process == null)
