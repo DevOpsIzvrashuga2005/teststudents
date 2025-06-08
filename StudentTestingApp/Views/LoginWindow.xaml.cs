@@ -26,6 +26,13 @@ namespace StudentTestingApp.Views
                 return;
             }
 
+            try
+            {
+                StudentTestingContext context = ((App)Application.Current).Db;
+                string passwordHash = HashPassword(password);
+
+                var user = context.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == passwordHash);
+
 
             try
             {
@@ -33,11 +40,15 @@ namespace StudentTestingApp.Views
                 string hash = HashPassword(password);
 
                 var user = db.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == hash);
+
                 if (user == null)
                 {
                     MessageBox.Show("Invalid credentials.");
                     return;
                 }
+
+
+                ((App)Application.Current).CurrentUser = user;
 
                 var taskWindow = new TaskListWindow();
                 Application.Current.MainWindow = taskWindow;
@@ -76,6 +87,11 @@ namespace StudentTestingApp.Views
                 return;
             }
 
+            try
+            {
+                StudentTestingContext context = ((App)Application.Current).Db;
+
+                if (context.Users.Any(u => u.UserName == username))
 
             try
             {
@@ -93,6 +109,8 @@ namespace StudentTestingApp.Views
                     PasswordHash = HashPassword(password),
                     RoleId = 1
                 };
+                context.Users.Add(newUser);
+                context.SaveChanges();
                 db.Users.Add(newUser);
                 db.SaveChanges();
 

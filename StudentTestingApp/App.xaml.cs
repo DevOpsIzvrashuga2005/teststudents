@@ -8,6 +8,7 @@ namespace StudentTestingApp
     public partial class App : Application
     {
         public StudentTestingContext Db { get; private set; } = null!;
+        public User? CurrentUser { get; set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
