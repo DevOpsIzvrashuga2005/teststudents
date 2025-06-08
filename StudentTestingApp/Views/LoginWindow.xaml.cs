@@ -84,7 +84,6 @@ namespace StudentTestingApp.Views
                 context.Users.Add(newUser);
                 context.SaveChanges();
 
-
                 MessageBox.Show("Registration successful. You can now log in.");
             }
             catch (Exception ex)
