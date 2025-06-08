@@ -17,7 +17,7 @@ namespace StudentTestingApp
             try
             {
                 var options = new DbContextOptionsBuilder<StudentTestingContext>()
-                    .UseNpgsql("Host=localhost;Database=testing;Username=postgres;Password=539571")
+                    .UseNpgsql("Host=localhost;Database=testing;Username=postgres;Password=secret")
                     .Options;
 
                 Db = new StudentTestingContext(options);
