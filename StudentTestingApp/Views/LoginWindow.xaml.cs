@@ -33,6 +33,7 @@ namespace StudentTestingApp.Views
 
                 var user = context.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == passwordHash);
 
+
             try
             {
                 var db = ((App)Application.Current).Db;
@@ -48,6 +49,7 @@ namespace StudentTestingApp.Views
 
                 ((App)Application.Current).CurrentUser = user;
 
+
                 ((App)Application.Current).CurrentUser = user;
 
                 var taskWindow = new TaskListWindow();
@@ -59,6 +61,7 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during login: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
 
             var db = ((App)Application.Current).Db;
             string hash = HashPassword(password);
@@ -98,6 +101,7 @@ namespace StudentTestingApp.Views
                 var db = ((App)Application.Current).Db;
 
                 if (db.Users.Any(u => u.UserName == username))
+
                 {
                     MessageBox.Show("User already exists.");
                     return;
@@ -120,7 +124,6 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during registration: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
 
             var db = ((App)Application.Current).Db;
 
