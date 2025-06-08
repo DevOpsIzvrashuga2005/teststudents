@@ -17,11 +17,16 @@ namespace StudentTestingApp.Services
             var results = new List<CodeEvaluationResult>();
 
             var syntaxTree = CSharpSyntaxTree.ParseText(code);
-            var references = new[]
-            {
-                MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(Console).Assembly.Location)
-            };
+            // Gather metadata references from the currently loaded assemblies so
+            // that user code can reference common namespaces such as
+            // System.Linq without manually specifying every assembly.
+            var references = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(a => !a.IsDynamic && !string.IsNullOrEmpty(a.Location))
+                .Select(a => a.Location)
+                .Distinct()
+                .Select(l => MetadataReference.CreateFromFile(l))
+                .Cast<MetadataReference>()
+                .ToList();
             var compilation = CSharpCompilation.Create(
                 "Submission",
                 new[] { syntaxTree },
