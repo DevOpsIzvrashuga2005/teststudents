@@ -22,6 +22,5 @@
             <TextBox x:Name="OutputBox" />
             <Button x:Name="SaveButton" Content="Save" Width="80" HorizontalAlignment="Right" Margin="0,10,0,0" Click="SaveButton_Click" />
         </StackPanel>
-
     </Grid>
 </Window>
