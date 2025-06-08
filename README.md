@@ -61,3 +61,8 @@ These instructions set up the database layer so the next steps can implement the
 3. **CodeEditorWindow** shows a text box for writing code and a button to submit the solution.
 
 Open `App.xaml` to start the application with `LoginWindow`. Once authenticated you can navigate to the other windows.
+
+4. **Solution file**: `StudentTestingApp.sln` includes the WPF project. You can open this solution in Visual Studio or run `dotnet build` to compile on a Windows machine.
+
+The next steps will implement the database models, user interface screens, code evaluation logic, and secure execution environment.
+
