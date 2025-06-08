@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using MaterialDesignThemes.Wpf;
 using StudentTestingApp.Models;
 using MaterialDesignThemes.Wpf;
 
@@ -29,6 +28,7 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Failed to load tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
             TasksListBox.ItemsSource = _context.ProgrammingTasks.ToList();
 
             if (_currentUser.RoleId == 2)
@@ -58,6 +58,7 @@ namespace StudentTestingApp.Views
         private void ToggleThemeButton_Click(object sender, RoutedEventArgs e)
         {
 
+            var theme = _paletteHelper.GetTheme();
             var theme = _paletteHelper.GetTheme();
             ITheme theme = _paletteHelper.GetTheme();
             if (theme.GetBaseTheme() == BaseTheme.Dark)

@@ -17,6 +17,17 @@ namespace StudentTestingApp.Views
             _task = task;
             Title = task.Title;
             DescriptionBlock.Text = task.Description;
+            CodeTextBox.Text =
+@"using System;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Write your code here
+    }
+}";
+            CodeTextBox.Focus();
         }
 
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)

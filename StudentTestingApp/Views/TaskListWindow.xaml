@@ -13,6 +13,7 @@
         </StackPanel>
         <ListBox x:Name="TasksListBox" Grid.Row="1" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
         <Button x:Name="CreateTaskButton" Grid.Row="2" Content="New Task" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="CreateTaskButton_Click" Visibility="Collapsed" />
+
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
         Title="Tasks" Height="350" Width="450">
