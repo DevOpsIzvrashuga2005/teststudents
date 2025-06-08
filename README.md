@@ -38,7 +38,7 @@ The next steps will implement the database models, user interface screens, code 
 1. **Add models** representing users, roles, tasks, test cases and submissions. These classes live in `StudentTestingApp/Models`.
 2. **Create `StudentTestingContext`** derived from `DbContext` to access PostgreSQL. The context exposes `DbSet` properties for all entities and seeds the default roles.
 3. **Update the project file** to reference `Microsoft.EntityFrameworkCore` and `Npgsql.EntityFrameworkCore.PostgreSQL` packages.
-4. **Configure the connection string** when starting the application (for instance in `App.xaml.cs`). Example:
+4. **Configure the connection string** when starting the application. `App.xaml.cs` now creates a `StudentTestingContext` with the connection string and calls `Database.Migrate()` on startup. Example:
    ```csharp
    var builder = new DbContextOptionsBuilder<StudentTestingContext>();
    builder.UseNpgsql("Host=localhost;Database=testing;Username=postgres;Password=secret");
