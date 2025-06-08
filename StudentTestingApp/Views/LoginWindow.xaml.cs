@@ -26,14 +26,14 @@ namespace StudentTestingApp.Views
                 return;
             }
 
+                StudentTestingContext context = ((App)Application.Current).Db;
+                string passwordHash = HashPassword(password);
+                var user = context.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == passwordHash);
+                StudentTestingContext context = ((App)Application.Current).Db;
+                if (context.Users.Any(u => u.UserName == username))
 
-            try
-            {
-                var db = ((App)Application.Current).Db;
-                string hash = HashPassword(password);
-
-                var user = db.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == hash);
-                if (user == null)
+                context.Users.Add(newUser);
+                context.SaveChanges();
                 {
                     MessageBox.Show("Invalid credentials.");
                     return;
