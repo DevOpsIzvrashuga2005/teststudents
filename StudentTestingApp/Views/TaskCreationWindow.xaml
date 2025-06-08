@@ -10,11 +10,23 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
         <TextBlock Text="Title" />
         <TextBox x:Name="TitleBox" Grid.Row="1" Margin="0,5,0,5" />
         <TextBlock Text="Description" Grid.Row="2" />
         <TextBox x:Name="DescriptionBox" Grid.Row="3" Height="60" AcceptsReturn="True" Margin="0,5,0,5" />
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="Test Cases" VerticalAlignment="Center" />
+            <Button x:Name="AddTestCaseButton" Content="Add" Width="60" Margin="10,0,0,0" Click="AddTestCaseButton_Click" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="5" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="TestCasesPanel" />
+        </ScrollViewer>
+        <Button x:Name="SaveButton" Grid.Row="6" Content="Save" Width="80" HorizontalAlignment="Right" Margin="0,10,0,0" Click="SaveButton_Click" />
+
         <TextBlock Text="Sample Input" Grid.Row="4" />
         <StackPanel Grid.Row="5">
             <TextBox x:Name="InputBox" Margin="0,0,0,5" />
@@ -22,5 +34,6 @@
             <TextBox x:Name="OutputBox" />
             <Button x:Name="SaveButton" Content="Save" Width="80" HorizontalAlignment="Right" Margin="0,10,0,0" Click="SaveButton_Click" />
         </StackPanel>
+
     </Grid>
 </Window>

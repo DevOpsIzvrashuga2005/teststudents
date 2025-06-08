@@ -12,6 +12,7 @@
         <TextBox x:Name="CodeTextBox" Grid.Row="1" FontFamily="Consolas" AcceptsReturn="True"
                  AcceptsTab="True" TextWrapping="NoWrap" VerticalScrollBarVisibility="Auto"/>
         <Button x:Name="SubmitButton" Grid.Row="2" Content="Submit" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="SubmitButton_Click" />
+
         <TextBox x:Name="CodeTextBox" Grid.Row="1" FontFamily="Consolas" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
         <Button x:Name="SubmitButton" Grid.Row="2" Content="Submit" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="SubmitButton_Click" />
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"

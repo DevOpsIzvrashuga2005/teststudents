@@ -36,6 +36,17 @@ The next steps will implement the database models, user interface screens, code 
 ## Step 2: Database and EF Core Models
 
 1. **Add models** representing users, roles, tasks, test cases and submissions. These classes live in `StudentTestingApp/Models`.
+   The `Submission` entity captures each attempt a student makes:
+
+   | Field | Type | Description |
+   |-------|------|-------------|
+   | `Id` | integer | Identifier (PK) |
+   | `UserId` | integer | Reference to the student (`Users.Id`) |
+   | `ProgrammingTaskId` | integer | Reference to the task (`ProgrammingTasks.Id`) |
+   | `Code` | text | Submitted source code |
+   | `SubmittedAt` | timestamp with time zone | Date/time of submission |
+   | `Success` | boolean | Whether all tests passed |
+   | `Output` | text | Captured stdout/stderr |
 2. **Create `StudentTestingContext`** derived from `DbContext` to access PostgreSQL. The context exposes `DbSet` properties for all entities and seeds the default roles.
 3. **Update the project file** to reference `Microsoft.EntityFrameworkCore` and `Npgsql.EntityFrameworkCore.PostgreSQL` packages.
 4. **Configure the connection string** when starting the application. `App.xaml.cs` reads the connection string from the `CONNECTION_STRING` environment variable (falling back to `Host=localhost;Database=testing;Username=postgres;Password=secret`). Example:

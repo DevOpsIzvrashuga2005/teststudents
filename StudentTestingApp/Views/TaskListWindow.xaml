@@ -29,5 +29,6 @@
                 <ListBox x:Name="TasksListBox" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
             </materialDesign:Card>
         </DockPanel>
+
     </Grid>
 </Window>

@@ -14,6 +14,11 @@ namespace StudentTestingApp.Views
         public CodeEditorWindow(ProgrammingTask task)
         {
             InitializeComponent();
+            // ensure test cases are loaded from the database
+            var context = ((App)Application.Current).Db;
+            _task = context.ProgrammingTasks
+                .Include(t => t.TestCases)
+                .FirstOrDefault(t => t.Id == task.Id) ?? task;
             _task = task;
             Title = task.Title;
             DescriptionBlock.Text = task.Description;

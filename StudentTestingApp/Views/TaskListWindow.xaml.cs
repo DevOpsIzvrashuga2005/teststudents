@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
+
 using StudentTestingApp.Models;
 using MaterialDesignThemes.Wpf;
 
@@ -22,14 +24,19 @@ namespace StudentTestingApp.Views
 
             try
             {
+                TasksListBox.ItemsSource = _context.ProgrammingTasks
+                    .Include(t => t.TestCases)
+                    .ToList();
+
                 TasksListBox.ItemsSource = _context.ProgrammingTasks.ToList();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to load tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
             TasksListBox.ItemsSource = _context.ProgrammingTasks.ToList();
+
 
 
             if (_currentUser.RoleId == 2)
@@ -42,7 +49,17 @@ namespace StudentTestingApp.Views
         {
             if (TasksListBox.SelectedItem is ProgrammingTask task)
             {
+
+                // reload the task including its test cases to ensure they are available
+                var loaded = _context.ProgrammingTasks
+                    .Include(t => t.TestCases)
+                    .FirstOrDefault(t => t.Id == task.Id);
+                if (loaded == null)
+                    return;
+                var editor = new CodeEditorWindow(loaded);
+
                 var editor = new CodeEditorWindow(task);
+
                 editor.ShowDialog();
             }
         }
@@ -60,9 +77,13 @@ namespace StudentTestingApp.Views
         {
 
             var theme = _paletteHelper.GetTheme();
+
+
+            var theme = _paletteHelper.GetTheme();
             var theme = _paletteHelper.GetTheme();
             var theme = _paletteHelper.GetTheme();
             ITheme theme = _paletteHelper.GetTheme();
+
 
             if (theme.GetBaseTheme() == BaseTheme.Dark)
             {
