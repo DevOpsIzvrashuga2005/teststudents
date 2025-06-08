@@ -22,6 +22,16 @@ namespace StudentTestingApp.Models
                 new Role { Id = 1, Name = "Student" },
                 new Role { Id = 2, Name = "Teacher" }
             );
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    UserName = "admin",
+                    PasswordHash = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=",
+                    RoleId = 2
+                }
+            );
         }
     }
 }
