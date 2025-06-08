@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using StudentTestingApp.Models;
 
 namespace StudentTestingApp.Views
@@ -10,6 +11,7 @@ namespace StudentTestingApp.Views
     {
         private readonly StudentTestingContext _context;
         private readonly User _currentUser;
+        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
 
         public TaskListWindow()
         {
@@ -41,6 +43,20 @@ namespace StudentTestingApp.Views
             {
                 TasksListBox.ItemsSource = _context.ProgrammingTasks.ToList();
             }
+        }
+
+        private void ToggleThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ITheme theme = _paletteHelper.GetTheme();
+            if (theme.GetBaseTheme() == BaseTheme.Dark)
+            {
+                theme.SetBaseTheme(Theme.Light);
+            }
+            else
+            {
+                theme.SetBaseTheme(Theme.Dark);
+            }
+            _paletteHelper.SetTheme(theme);
         }
     }
 }
