@@ -81,3 +81,9 @@ Open `App.xaml` to start the application with `LoginWindow`. Once authenticated 
    ```
 
 This step lays the groundwork for automated grading of submissions. Security-hardening like sandboxing should be added in future steps.
+=======
+4. **Solution file**: `StudentTestingApp.sln` includes the WPF project. You can open this solution in Visual Studio or run `dotnet build` to compile on a Windows machine.
+
+The next steps will implement the database models, user interface screens, code evaluation logic, and secure execution environment.
+
+
