@@ -13,5 +13,20 @@
         </StackPanel>
         <ListBox x:Name="TasksListBox" Grid.Row="1" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
         <Button x:Name="CreateTaskButton" Grid.Row="2" Content="New Task" Width="80" HorizontalAlignment="Right" Margin="0,5,0,0" Click="CreateTaskButton_Click" Visibility="Collapsed" />
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Tasks" Height="350" Width="450">
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <DockPanel>
+            <ToolBar DockPanel.Dock="Top" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+                <Button x:Name="ToggleThemeButton" Content="Toggle Theme" Click="ToggleThemeButton_Click" />
+                <Separator />
+                <Button x:Name="CreateTaskButton" Content="Create Task" Click="CreateTaskButton_Click" Visibility="Collapsed" />
+            </ToolBar>
+
+            <materialDesign:Card Margin="16" Padding="8">
+                <ListBox x:Name="TasksListBox" DisplayMemberPath="Title" MouseDoubleClick="TasksListBox_DoubleClick" />
+            </materialDesign:Card>
+        </DockPanel>
     </Grid>
 </Window>

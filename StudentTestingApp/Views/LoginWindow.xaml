@@ -20,5 +20,21 @@
             <Button x:Name="LoginButton" Content="Login" Width="80" Margin="0,0,5,0" Click="LoginButton_Click" />
             <Button x:Name="RegisterButton" Content="Register" Width="80" Click="RegisterButton_Click" />
         </StackPanel>
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Login" Height="250" Width="320">
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <materialDesign:Card Padding="16" Width="260" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+                <TextBox x:Name="UsernameBox" Margin="0,0,0,8"
+                         materialDesign:HintAssist.Hint="Username" />
+                <PasswordBox x:Name="PasswordBox" Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Password" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="LoginButton" Content="Login" Margin="0,0,8,0" Click="LoginButton_Click" />
+                    <Button x:Name="RegisterButton" Content="Register" Click="RegisterButton_Click" />
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </Window>

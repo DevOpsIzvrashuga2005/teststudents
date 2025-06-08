@@ -32,6 +32,7 @@ namespace StudentTestingApp.Views
                 string passwordHash = HashPassword(password);
 
                 var user = context.Users.FirstOrDefault(u => u.UserName == username && u.PasswordHash == passwordHash);
+
                 if (user == null)
                 {
                     MessageBox.Show("Invalid credentials.");
@@ -39,6 +40,7 @@ namespace StudentTestingApp.Views
                 }
 
                 ((App)Application.Current).CurrentUser = user;
+
                 var taskWindow = new TaskListWindow();
                 Application.Current.MainWindow = taskWindow;
                 taskWindow.Show();
@@ -48,6 +50,7 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during login: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +69,7 @@ namespace StudentTestingApp.Views
                 StudentTestingContext context = ((App)Application.Current).Db;
 
                 if (context.Users.Any(u => u.UserName == username))
+
                 {
                     MessageBox.Show("User already exists.");
                     return;
@@ -86,6 +90,7 @@ namespace StudentTestingApp.Views
             {
                 MessageBox.Show($"Error during registration: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
         private static string HashPassword(string password)
